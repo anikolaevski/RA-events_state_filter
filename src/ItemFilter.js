@@ -10,15 +10,15 @@ export default class CBToolbar extends React.Component {
   constructor(props) {
     super(props);
   }
+  callback() { 
+    this.setState( (prev) => ({prev, current: CurrentSelection}) );
+  }
   render () {
     let k = 0;
-    const callback = function() { 
-      this.setState( (prev) => ({prev, current: CurrentSelection}) );
-    }.bind(this);
     return (
       <div>
         <div className="es_container">
-          {filters.map( o => <Cbutton key={o} item = {o} callback = {callback}/>)}
+          {filters.map( o => <Cbutton key={o} item = {o} callback = {this.callback.bind(this)} />)}
         </div>
         <div className="es_window">
           {items.map( o => <CItem key={k++} item = {o}/>)}
